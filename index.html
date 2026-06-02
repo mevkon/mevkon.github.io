@@ -176,8 +176,9 @@
     .chip.lime:hover { border-color: var(--lime); color: var(--lime); }
 
     /* ---------- WORK ---------- */
-    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 760px) { .work-grid { grid-template-columns: 1fr; } }
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 880px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .work-grid { grid-template-columns: 1fr; } }
     .project {
       position: relative; background: var(--surface);
       border: 1px solid var(--line); border-radius: 10px;
@@ -281,19 +282,9 @@
         <span class="line">Evgeni</span>
         <span class="line outline">Melnikov</span>
       </h1>
-      <p class="lead">
-        I turn complex systems into clear, human-friendly interfaces — from research
-        and wireframes to polished UI. 10+ years across B2B, B2C and SaaS, with
-        AI-assisted workflows baked in.
-      </p>
       <div class="hero-actions">
         <a href="#work" class="btn btn-primary">View work →</a>
         <a href="mailto:evgmel12@gmail.com" class="btn btn-ghost">Get in touch</a>
-      </div>
-      <div class="hero-meta">
-        <div><span class="k label">Based in</span><span class="v">Netanya, Israel</span></div>
-        <div><span class="k label">Experience</span><span class="v">10+ years</span></div>
-        <div><span class="k label">Languages</span><span class="v">Hebrew · English · Russian</span></div>
       </div>
     </section>
 
@@ -364,15 +355,11 @@
 
     <!-- ============ WORK ============ -->
     <!--
-      ФОТО ПРОЕКТОВ:
-      1) Создай в репозитории папку  images/
-      2) Загрузи туда обложки с такими именами (формат .jpg или .webp):
+      ФОТО ПРОЕКТОВ лежат в папке images/ :
          images/music-player.jpg
-         images/dominator.jpg
          images/atomcrm.jpg
          images/investment-app.jpg
-      3) Готово — фото появятся сами. Пока их нет, виден градиент.
-      Рекомендация: ширина ~1200px, формат под 16:10, вес до ~250 КБ.
+      Чтобы поменять — загрузи новый файл с тем же именем (16:10, до ~250 КБ).
     -->
     <section id="work" class="reveal">
       <div class="sec-head"><span class="sec-bar"></span><span class="label">Selected work</span></div>
@@ -394,34 +381,15 @@
               listening experience.
             </p>
             <div class="tags"><span class="t">Figma</span><span class="t">UX/UI</span><span class="t">Branding</span></div>
-            <a href="https://www.behance.net/mevkon" target="_blank" rel="noopener" class="more">View case ↗</a>
+            <a href="https://www.behance.net/gallery/245806765/PIPE-Music-Player-App-UXUI-Case" target="_blank" rel="noopener" class="more">View case ↗</a>
           </div>
         </article>
 
         <!-- Project 02 -->
         <article class="project">
           <div class="project-media">
-            <img src="images/dominator.jpg" alt="Dominator — computer store branding package" loading="lazy" onerror="this.style.display='none'">
-            <span class="num">02</span>
-          </div>
-          <div class="project-body">
-            <p class="cat">Brand Identity</p>
-            <h3>Dominator — Computer Store Branding</h3>
-            <p>
-              A complete brand identity for a computer store: logo and custom typeface
-              plus a full package — brand book, business cards, packaging, gift cards and
-              marketing materials, consistent across print and digital.
-            </p>
-            <div class="tags"><span class="t">Identity</span><span class="t">Typeface</span><span class="t">Print</span></div>
-            <a href="https://www.behance.net/mevkon" target="_blank" rel="noopener" class="more">View case ↗</a>
-          </div>
-        </article>
-
-        <!-- Project 03 -->
-        <article class="project">
-          <div class="project-media">
             <img src="images/atomcrm.jpg" alt="AtomCRM — CRM dashboard UI" loading="lazy" onerror="this.style.display='none'">
-            <span class="num">03</span>
+            <span class="num">02</span>
           </div>
           <div class="project-body">
             <p class="cat">UX/UI · SaaS</p>
@@ -432,7 +400,7 @@
               screens and 30+ reusable components.
             </p>
             <div class="tags"><span class="t">Figma</span><span class="t">Design System</span><span class="t">Dashboard</span></div>
-            <a href="https://www.behance.net/mevkon" target="_blank" rel="noopener" class="more">View case ↗</a>
+            <a href="https://www.behance.net/gallery/245188547/AtomCRM-Dashboard-UIUX-Design" target="_blank" rel="noopener" class="more">View case ↗</a>
           </div>
         </article>
 
@@ -440,7 +408,7 @@
         <article class="project">
           <div class="project-media">
             <img src="images/investment-app.jpg" alt="Investment Portfolio App — fintech mobile screens" loading="lazy" onerror="this.style.display='none'">
-            <span class="num">04</span>
+            <span class="num">03</span>
           </div>
           <div class="project-body">
             <p class="cat">UX/UI · Fintech</p>
@@ -451,7 +419,7 @@
               Shekel-gold accent — backed by user flows, wireframes and hi-fi prototypes.
             </p>
             <div class="tags"><span class="t">Fintech</span><span class="t">Case Study</span><span class="t">Prototyping</span></div>
-            <a href="https://www.behance.net/mevkon" target="_blank" rel="noopener" class="more">View case ↗</a>
+            <a href="https://www.behance.net/gallery/245188715/Shekel-Smart-Investment-Portfolio" target="_blank" rel="noopener" class="more">View case ↗</a>
           </div>
         </article>
 
