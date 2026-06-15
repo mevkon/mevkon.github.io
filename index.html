@@ -176,8 +176,7 @@
     .chip.lime:hover { border-color: var(--lime); color: var(--lime); }
 
     /* ---------- WORK ---------- */
-    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    @media (max-width: 880px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     @media (max-width: 560px) { .work-grid { grid-template-columns: 1fr; } }
     .project {
       position: relative; background: var(--surface);
@@ -356,6 +355,7 @@
     <!-- ============ WORK ============ -->
     <!--
       ФОТО ПРОЕКТОВ лежат в папке images/ :
+         images/demama.jpg
          images/music-player.jpg
          images/atomcrm.jpg
          images/investment-app.jpg
@@ -366,11 +366,27 @@
       <h2 class="sec-title">Projects</h2>
       <div class="work-grid">
 
-        <!-- Project 01 -->
+        <!-- Demama — newest, featured first -->
+        <article class="project">
+          <div class="project-media">
+            <img src="images/demama.jpg" alt="Demama — smart-home app soft-UI mockup" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <p class="cat">Product Design · Smart Home</p>
+            <h3>Demama</h3>
+            <p>
+              A smart-home app where depth — not colour or borders — carries meaning.
+              One soft-UI system, every screen reading as a single calm product.
+            </p>
+            <div class="tags"><span class="t">Product Design</span><span class="t">Design System</span><span class="t">Soft UI</span></div>
+            <a href="demama-case.html" class="more">View case →</a>
+          </div>
+        </article>
+
+        <!-- Music Player -->
         <article class="project">
           <div class="project-media">
             <img src="images/music-player.jpg" alt="Music Player App — mobile UX/UI screens" loading="lazy" onerror="this.style.display='none'">
-            <span class="num">01</span>
           </div>
           <div class="project-body">
             <p class="cat">UX/UI · Mobile</p>
@@ -385,11 +401,10 @@
           </div>
         </article>
 
-        <!-- Project 02 -->
+        <!-- AtomCRM -->
         <article class="project">
           <div class="project-media">
             <img src="images/atomcrm.jpg" alt="AtomCRM — CRM dashboard UI" loading="lazy" onerror="this.style.display='none'">
-            <span class="num">02</span>
           </div>
           <div class="project-body">
             <p class="cat">UX/UI · SaaS</p>
@@ -404,11 +419,10 @@
           </div>
         </article>
 
-        <!-- Project 04 -->
+        <!-- Investment -->
         <article class="project">
           <div class="project-media">
             <img src="images/investment-app.jpg" alt="Investment Portfolio App — fintech mobile screens" loading="lazy" onerror="this.style.display='none'">
-            <span class="num">03</span>
           </div>
           <div class="project-body">
             <p class="cat">UX/UI · Fintech</p>
