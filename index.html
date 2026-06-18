@@ -178,6 +178,15 @@
     /* ---------- WORK ---------- */
     .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     @media (max-width: 560px) { .work-grid { grid-template-columns: 1fr; } }
+
+    /* Раздел брендинга — крупная featured-карточка (фото слева, текст справа) */
+    .work-grid.brand-grid { grid-template-columns: 1fr; }
+    .project.featured { display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: stretch; }
+    .project.featured .project-media { aspect-ratio: auto; height: 100%; min-height: 300px; }
+    @media (max-width: 760px) {
+      .project.featured { display: flex; }
+      .project.featured .project-media { aspect-ratio: 16 / 10; min-height: 0; }
+    }
     .project {
       position: relative; background: var(--surface);
       border: 1px solid var(--line); border-radius: 10px;
@@ -263,6 +272,7 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#work">Work</a>
+        <a href="#branding">Branding</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -437,6 +447,30 @@
           </div>
         </article>
 
+      </div>
+    </section>
+
+    <!-- ============ BRANDING ============ -->
+    <section id="branding" class="reveal">
+      <div class="sec-head"><span class="sec-bar lime"></span><span class="label">Identity</span></div>
+      <h2 class="sec-title">Branding</h2>
+      <div class="work-grid brand-grid">
+        <article class="project featured">
+          <div class="project-media">
+            <img src="images/dominator.jpg" alt="Dominator — gaming computer rebranding, exterior signage" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <p class="cat">Brand Identity · Rebranding</p>
+            <h3>Dominator — Gaming Computer</h3>
+            <p>
+              A full rebranding for a gaming-computer store — a flexible identity that
+              scales from a business card to a building facade, with one consistent
+              voice across every touchpoint.
+            </p>
+            <div class="tags"><span class="t">Logo &amp; Identity</span><span class="t">Brand System</span><span class="t">Signage &amp; Print</span></div>
+            <a href="dominator-case.html" class="more">View case →</a>
+          </div>
+        </article>
       </div>
     </section>
 
