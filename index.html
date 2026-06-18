@@ -6,6 +6,19 @@
   <title>Evgeni Melnikov — Senior Product Designer</title>
   <meta name="description" content="Evgeni Melnikov — Senior Product Designer. UX/UI, AI-assisted design, visual design and branding. 10+ years of experience across B2B, B2C and SaaS." />
 
+  <!-- Open Graph / превью ссылки в соцсетях -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mevkon.github.io/" />
+  <meta property="og:title" content="Evgeni Melnikov — Senior Product Designer" />
+  <meta property="og:description" content="UX/UI, AI-assisted design and branding. 10+ years across B2B, B2C and SaaS." />
+  <meta property="og:image" content="https://mevkon.github.io/images/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Evgeni Melnikov — Senior Product Designer" />
+  <meta name="twitter:description" content="UX/UI, AI-assisted design and branding. 10+ years across B2B, B2C and SaaS." />
+  <meta name="twitter:image" content="https://mevkon.github.io/images/og.jpg" />
+
   <!-- Иконка сайта (favicon) -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -90,7 +103,18 @@
       color: var(--dim); transition: color 0.2s ease;
     }
     .nav-links a:hover { color: var(--text); }
-    @media (max-width: 680px) { .nav-links { display: none; } }
+    .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 22px; line-height: 1; cursor: pointer; padding: 4px 6px; }
+    @media (max-width: 680px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; gap: 0; display: none;
+        background: rgba(5, 5, 6, 0.97); backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line); padding: 6px 30px 16px;
+      }
+      header.open .nav-links { display: flex; }
+      .nav-links a { padding: 13px 0; border-bottom: 1px solid var(--line); }
+    }
 
     /* ---------- HERO ---------- */
     .hero { padding: 120px 0 100px; position: relative; }
@@ -114,15 +138,7 @@
       -webkit-text-stroke: 1.5px var(--text);
       animation-delay: 0.14s;
     }
-    .hero .lead {
-      max-width: 600px; color: var(--dim); margin-bottom: 38px;
-      opacity: 0; animation: rise 0.7s ease 0.22s forwards;
-    }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; opacity: 0; animation: rise 0.7s ease 0.3s forwards; }
-    .hero-meta { margin-top: 46px; display: flex; flex-wrap: wrap; gap: 30px; opacity: 0; animation: rise 0.7s ease 0.38s forwards; }
-    .hero-meta div { display: flex; flex-direction: column; gap: 4px; }
-    .hero-meta .k { color: var(--cyan); }
-    .hero-meta .v { color: var(--text); font-size: var(--fs-sm); }
 
     /* Геометрические фигуры */
     .shape { position: absolute; z-index: 0; }
@@ -146,6 +162,7 @@
 
     /* ---------- SECTIONS ---------- */
     section { padding: 84px 0; }
+    section[id] { scroll-margin-top: 90px; }
     .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
     .sec-bar { width: 26px; height: 16px; background: var(--cyan); }
     .sec-bar.lime { background: var(--lime); }
@@ -211,14 +228,6 @@
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.45s ease;
     }
-    .project-media .num {
-      position: absolute; left: 18px; bottom: 8px;
-      font-family: var(--display); font-weight: 800; font-size: 2.6rem;
-      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.75);
-      letter-spacing: 0.04em; pointer-events: none;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.55);
-    }
-
     .project-body { padding: 24px 26px 28px; display: flex; flex-direction: column; flex-grow: 1; }
     .project .cat { font-family: var(--display); font-weight: 700; font-size: var(--fs-label); letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); margin-bottom: 9px; }
     .project h3 { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.01em; margin-bottom: 11px; line-height: 1.2; }
@@ -275,6 +284,7 @@
         <a href="#branding">Branding</a>
         <a href="#contact">Contact</a>
       </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
     </nav>
   </header>
 
@@ -363,14 +373,7 @@
     </section>
 
     <!-- ============ WORK ============ -->
-    <!--
-      ФОТО ПРОЕКТОВ лежат в папке images/ :
-         images/demama.jpg
-         images/music-player.jpg
-         images/atomcrm.jpg
-         images/investment-app.jpg
-      Чтобы поменять — загрузи новый файл с тем же именем (16:10, до ~250 КБ).
-    -->
+    <!-- Обложки проектов: images/<имя>.jpg, формат 16:10. Заменить — загрузить файл с тем же именем. -->
     <section id="work" class="reveal">
       <div class="sec-head"><span class="sec-bar"></span><span class="label">Selected work</span></div>
       <h2 class="sec-title">Projects</h2>
@@ -504,6 +507,20 @@
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Мобильное меню
+    const hdr = document.querySelector("header");
+    const tgl = document.querySelector(".nav-toggle");
+    tgl.addEventListener("click", () => {
+      const open = hdr.classList.toggle("open");
+      tgl.setAttribute("aria-expanded", open);
+    });
+    hdr.querySelectorAll(".nav-links a").forEach((a) =>
+      a.addEventListener("click", () => {
+        hdr.classList.remove("open");
+        tgl.setAttribute("aria-expanded", "false");
+      })
+    );
   </script>
 </body>
 </html>
