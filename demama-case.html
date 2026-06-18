@@ -67,6 +67,11 @@
   .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;letter-spacing:-.4px;color:var(--ink)}
   .brand-mark{height:48px;width:auto;flex-shrink:0;display:block}
   .nav-meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);font-weight:500}
+  .nav-left{display:flex;align-items:center;gap:22px}
+  a.brand{text-decoration:none}
+  .nav-back{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent-deep);text-decoration:none;letter-spacing:.02em;transition:color .2s ease}
+  .nav-back:hover{color:var(--ink)}
+  @media(max-width:640px){.nav-meta{display:none}.nav-in{padding:16px 20px}.nav-left{gap:14px}}
 
   /* ============ HERO ============ */
   .hero{padding:88px 0 72px;position:relative}
@@ -763,7 +768,10 @@
   <!-- ============ NAV ============ -->
   <nav class="nav">
     <div class="nav-in">
-      <div class="brand"><svg class="brand-mark" viewBox="0 0 354.67 330" fill="currentColor" aria-hidden="true"><path d="M61.15,210.55h.43l-.44.43v67.53h76.85c4.96,0,9.78-.09,14.49-.25h26.75v-67.72l-59.04-58.38-59.04,58.38ZM141.84,253.27h-43.29v-42.72h43.29v42.72Z"/><path d="M255.94,78.93c-25.06-18.3-64.38-27.45-117.95-27.45H61.14v132.29l37.4-36.99v-70.06h45.18c38.14,0,66.07,7.07,83.79,21.21,17.71,14.14,26.57,36.42,26.57,66.83s-8.86,53.02-26.57,67.21c-7.85,6.29-17.72,11.19-29.58,14.69v26.94c23.98-4.47,43.26-12.01,57.82-22.62,25.18-18.35,37.77-47.09,37.77-86.22s-12.53-67.54-37.59-85.84Z"/></svg>Demama</div>
+      <div class="nav-left">
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 354.67 330" fill="currentColor" aria-hidden="true"><path d="M61.15,210.55h.43l-.44.43v67.53h76.85c4.96,0,9.78-.09,14.49-.25h26.75v-67.72l-59.04-58.38-59.04,58.38ZM141.84,253.27h-43.29v-42.72h43.29v42.72Z"/><path d="M255.94,78.93c-25.06-18.3-64.38-27.45-117.95-27.45H61.14v132.29l37.4-36.99v-70.06h45.18c38.14,0,66.07,7.07,83.79,21.21,17.71,14.14,26.57,36.42,26.57,66.83s-8.86,53.02-26.57,67.21c-7.85,6.29-17.72,11.19-29.58,14.69v26.94c23.98-4.47,43.26-12.01,57.82-22.62,25.18-18.35,37.77-47.09,37.77-86.22s-12.53-67.54-37.59-85.84Z"/></svg>Demama</a>
+        <a class="nav-back" href="index.html">← Back to work</a>
+      </div>
       <div class="nav-meta">Product Design Case · 2026</div>
     </div>
   </nav>
