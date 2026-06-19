@@ -218,7 +218,7 @@
   .ba .after .tg{color:var(--green)}
   .ba .cell img{max-height:150px;width:auto}
   .ba .mid{display:flex;align-items:center;justify-content:center;background:#1a1a1a;color:var(--mut);padding:0 22px;font-size:24px}
-  @media(max-width:680px){.ba .mid{padding:18px;transform:rotate(90deg)}}
+  @media(max-width:680px){.ba .mid{padding:14px;transform:none}.ba .mid .ar{display:inline-block;transform:rotate(90deg)}}
   /* logo construction */
   .constr{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;margin-top:34px;
     border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0d0d0d,#070707);padding:38px}
@@ -364,7 +364,7 @@
         <div class="tg">Before</div>
         <img src="images/dominator/symbol-old.png" alt="Old Dominator logo — pixel invader">
       </div>
-      <div class="mid">→</div>
+      <div class="mid"><span class="ar">→</span></div>
       <div class="cell after">
         <div class="tg">After</div>
         <img src="images/dominator/symbol-new.png" alt="New Dominator symbol — bionic processor">
