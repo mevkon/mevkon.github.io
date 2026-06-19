@@ -94,8 +94,9 @@
       border-bottom: 1px solid var(--line);
     }
     nav { max-width: 1080px; margin: 0 auto; padding: 16px 30px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-family: var(--display); font-weight: 800; letter-spacing: 0.04em; font-size: 1.05rem; }
-    .logo b { color: var(--cyan); }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 26px; width: auto; display: block; }
+    footer .logo img { height: 22px; }
     .nav-links { display: flex; gap: 28px; }
     .nav-links a {
       font-family: var(--display); font-weight: 600;
@@ -276,7 +277,7 @@
   <!-- ============ NAV ============ -->
   <header>
     <nav>
-      <a href="#" class="logo">EM<b>.</b></a>
+      <a href="#" class="logo" aria-label="Evgeni Melnikov — home"><img src="logo.svg" alt="Evgeni Melnikov" /></a>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
@@ -496,7 +497,7 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="wrap">
-      <span class="logo">EM<b>.</b></span>
+      <span class="logo"><img src="logo.svg" alt="Evgeni Melnikov" /></span>
       <span class="label">© <span id="year"></span> Evgeni Melnikov</span>
     </div>
   </footer>
