@@ -192,8 +192,8 @@
   /* footer */
   footer{border-top:1px solid var(--line);padding:34px 0}
   footer .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-  footer .logo{font-family:'Archivo Expanded';font-weight:900;font-size:20px;letter-spacing:.04em}
-  footer .logo b{color:var(--green)}
+  footer .logo{display:inline-flex;align-items:center}
+  footer .logo img{height:24px;width:auto;display:block}
   footer .label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut2)}
   footer .links{display:flex;gap:22px}
   footer .links a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);transition:color .2s}
@@ -653,7 +653,7 @@
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap">
-    <span class="logo">EM<b>.</b></span>
+    <span class="logo"><img src="logo.svg" alt="Evgeni Melnikov"></span>
     <span class="label">Dominator · Rebranding · 2025</span>
     <div class="links">
       <a href="index.html">Work</a>
