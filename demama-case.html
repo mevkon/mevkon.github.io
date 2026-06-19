@@ -685,6 +685,13 @@
   .ds-embed .neu-spec .sk{flex-shrink:0}
   .ds-embed .neu-spec .sv{text-align:right;white-space:nowrap}
 
+  /* FIX: DS pairs were stuck at 2 columns on mobile (a base .ds-embed .grid-2
+     rule shadowed the general mobile rule by specificity). Collapse to one
+     column below 1080px like every other grid on the page. */
+  @media (max-width:1080px){
+    .ds-embed .grid-2{grid-template-columns:1fr;gap:28px}
+  }
+
   /* ============ responsive ============ */
   @media (max-width:1000px){
     .wrap,.nav-in{padding-left:28px;padding-right:28px}
