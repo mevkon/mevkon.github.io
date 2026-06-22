@@ -254,6 +254,21 @@
     .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
 
     /* ---------- FOOTER ---------- */
+    .posters-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    @media (max-width: 900px) { .posters-grid { grid-template-columns: repeat(2, 1fr); } }
+    .poster { margin: 0; position: relative; border-radius: 10px; overflow: hidden; cursor: zoom-in; border: 1px solid var(--line); background: var(--surface); aspect-ratio: 3 / 4; }
+    .poster img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
+    .poster:hover img { transform: scale(1.05); }
+    .editorial-intro { color: var(--dim); max-width: 640px; margin-bottom: 26px; }
+    .book-gallery { display: flex; flex-direction: column; gap: 16px; }
+    .book-gallery .spread { margin: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); cursor: zoom-in; }
+    .book-gallery .spread img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .book-gallery .spread:hover img { transform: scale(1.02); }
+    .book-gallery .book-cover { align-self: center; width: 100%; max-width: 460px; }
+    .lightbox { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(2,2,3,0.93); backdrop-filter: blur(6px); cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; box-shadow: 0 24px 70px rgba(0,0,0,0.6); }
+    .lightbox .close { position: absolute; top: 16px; right: 22px; font-size: 32px; line-height: 1; color: var(--text); background: none; border: 0; cursor: pointer; }
     .brandband { padding: 64px 24px 56px; text-align: center; }
     .brandband img { width: 100%; max-width: 460px; height: auto; display: inline-block; }
     @media (max-width: 680px) { .brandband { padding: 44px 20px 40px; } .brandband img { max-width: 260px; } }
@@ -286,6 +301,8 @@
         <a href="#skills">Skills</a>
         <a href="#work">Work</a>
         <a href="#branding">Branding</a>
+        <a href="#posters">Posters</a>
+        <a href="#book">Book</a>
         <a href="#contact">Contact</a>
       </div>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
@@ -481,6 +498,35 @@
       </div>
     </section>
 
+    <!-- ============ POSTERS ============ -->
+    <section id="posters" class="reveal">
+      <div class="sec-head"><span class="sec-bar"></span><span class="label">Graphic Design</span></div>
+      <h2 class="sec-title">Posters</h2>
+      <div class="posters-grid">
+        <figure class="poster"><img src="images/posters/poster-1.jpg" alt="Summer — typography poster" loading="lazy"></figure>
+        <figure class="poster"><img src="images/posters/poster-2.jpg" alt="Falafel &amp; Hummus — menu design" loading="lazy"></figure>
+        <figure class="poster"><img src="images/posters/poster-3.jpg" alt="Me — typography poster" loading="lazy"></figure>
+        <figure class="poster"><img src="images/posters/poster-4.jpg" alt="Poster Design — sunset typography" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <!-- ============ BOOK / EDITORIAL ============ -->
+    <section id="book" class="reveal">
+      <div class="sec-head"><span class="sec-bar lime"></span><span class="label">Editorial</span></div>
+      <h2 class="sec-title">Saul Bass — Book</h2>
+      <p class="editorial-intro">A personal editorial project — a book on Saul Bass and his idea of design that moves. In Russian. Click any spread to zoom.</p>
+      <div class="book-gallery">
+        <figure class="spread book-cover"><img src="images/book/cover.jpg" alt="Saul Bass book — cover" loading="lazy"></figure>
+        <figure class="spread"><img src="images/book/spread-1.jpg" alt="Saul Bass book — spread" loading="lazy"></figure>
+        <figure class="spread"><img src="images/book/spread-2.jpg" alt="Saul Bass book — spread" loading="lazy"></figure>
+        <figure class="spread"><img src="images/book/spread-3.jpg" alt="Saul Bass book — spread" loading="lazy"></figure>
+        <figure class="spread"><img src="images/book/spread-4.jpg" alt="Saul Bass book — spread" loading="lazy"></figure>
+        <figure class="spread"><img src="images/book/spread-5.jpg" alt="Saul Bass book — spread" loading="lazy"></figure>
+        <figure class="spread"><img src="images/book/spread-6.jpg" alt="Saul Bass book — spread" loading="lazy"></figure>
+        <figure class="spread book-cover"><img src="images/book/back.jpg" alt="Saul Bass book — closing page" loading="lazy"></figure>
+      </div>
+    </section>
+
   </main>
 
   <!-- ============ CONTACT ============ -->
@@ -501,6 +547,12 @@
   <section class="brandband reveal">
     <img src="images/mevkon-design.png" alt="Mevkon Design" />
   </section>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Poster preview">
+    <button class="close" aria-label="Close">×</button>
+    <img src="" alt="Poster preview" />
+  </div>
 
   <!-- ============ FOOTER ============ -->
   <footer>
@@ -530,6 +582,24 @@
         tgl.setAttribute("aria-expanded", "false");
       })
     );
+
+    // Лайтбокс постеров — клик по постеру открывает крупно
+    const lb = document.querySelector(".lightbox");
+    const lbImg = lb.querySelector("img");
+    document.querySelectorAll(".poster, .spread").forEach((p) =>
+      p.addEventListener("click", () => {
+        lbImg.src = p.querySelector("img").src;
+        lb.classList.add("open");
+        document.body.style.overflow = "hidden";
+      })
+    );
+    function closeLightbox() {
+      lb.classList.remove("open");
+      lbImg.src = "";
+      document.body.style.overflow = "";
+    }
+    lb.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
   </script>
 </body>
 </html>
