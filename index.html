@@ -98,6 +98,8 @@
     .logo { display: flex; align-items: center; }
     .logo img { height: 26px; width: auto; display: block; }
     footer .logo img { height: 22px; }
+    .footer-brand { display: flex; align-items: center; }
+    .footer-brand img { height: 40px; width: auto; display: block; opacity: 0.9; }
     .nav-links { display: flex; gap: 28px; }
     .nav-links a {
       font-family: var(--display); font-weight: 600;
@@ -185,6 +187,10 @@
     @media (max-width: 760px) { .cols { grid-template-columns: 1fr; gap: 36px; } }
     .as-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-top: 4px; }
     .as-grid .sec-title { margin-bottom: 16px; }
+    /* на средних ширинах колонки узкие — уменьшаем заголовок, чтобы "expertise" не переносился */
+    @media (min-width: 761px) and (max-width: 1100px) {
+      .as-grid .sec-title { font-size: clamp(22px, 3.2vw, 30px); }
+    }
     .as-bio p + p { margin-top: 14px; }
     @media (max-width: 760px) { .as-grid { grid-template-columns: 1fr; gap: 40px; } }
     .group-title { color: var(--dim); margin-bottom: 10px; }
@@ -293,9 +299,6 @@
     .lightbox.open { display: flex; }
     .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; box-shadow: 0 24px 70px rgba(0,0,0,0.6); }
     .lightbox .close { position: absolute; top: 16px; right: 22px; font-size: 32px; line-height: 1; color: var(--text); background: none; border: 0; cursor: pointer; }
-    .brandband { padding: 64px 24px 56px; text-align: center; }
-    .brandband img { width: 100%; max-width: 460px; height: auto; display: inline-block; }
-    @media (max-width: 680px) { .brandband { padding: 44px 20px 40px; } .brandband img { max-width: 260px; } }
     footer { border-top: 1px solid var(--line); padding: 28px 0; }
     footer .wrap { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; color: var(--dim); font-size: var(--fs-sm); }
     footer .label { color: var(--dim); }
@@ -568,11 +571,6 @@
     </div>
   </section>
 
-  <!-- ============ BRAND BAND ============ -->
-  <section class="brandband reveal">
-    <img src="images/mevkon-design.png" alt="Mevkon Design" />
-  </section>
-
   <!-- ============ LIGHTBOX ============ -->
   <div class="lightbox" role="dialog" aria-modal="true" aria-label="Poster preview">
     <button class="close" aria-label="Close">×</button>
@@ -582,7 +580,7 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="wrap">
-      <span class="logo"><img src="logo.svg" alt="Evgeni Melnikov" /></span>
+      <span class="footer-brand"><img src="images/mevkon-design.png" alt="Mevkon Design" /></span>
       <span class="label">© <span id="year"></span> Evgeni Melnikov</span>
     </div>
   </footer>
