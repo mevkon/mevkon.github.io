@@ -39,6 +39,10 @@
       --cyan: #16c8e8;
       --lime: #cdf01e;
       --magenta: #e81fa8;
+      --logo-lime: #c1ff00;
+      --logo-orange: #ff6d00;
+      --logo-cyan: #00cfff;
+      --logo-purple: #c000ff;
       --line: rgba(255, 255, 255, 0.10);
       --line-2: rgba(255, 255, 255, 0.18);
 
@@ -145,11 +149,17 @@
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; opacity: 0; animation: rise 0.7s ease 0.3s forwards; }
 
     /* Геометрические фигуры */
-    .shape { position: absolute; z-index: 0; }
-    .shape.square { width: 64px; height: 64px; background: var(--cyan); top: 130px; right: 6%; }
-    .shape.circle { width: 56px; height: 56px; border-radius: 50%; background: var(--lime); bottom: 90px; right: 16%; }
-    .shape.ring { width: 90px; height: 90px; border: 1.5px solid var(--line-2); border-radius: 50%; top: 250px; right: 22%; }
-    @media (max-width: 680px) { .shape.square, .shape.circle, .shape.ring { display: none; } }
+    .shape { position: absolute; z-index: 0; will-change: transform; }
+    /* 4 фигуры по диагонали, цвета логотипа, мягкое движение */
+    .shape.circ { width: 60px; height: 60px; border-radius: 50%; background: var(--logo-purple); top: 60px; right: 30%; animation: sh-b 9s ease-in-out infinite; }
+    .shape.sq { width: 60px; height: 60px; background: var(--logo-cyan); top: 150px; right: 18%; animation: sh-a 12s ease-in-out infinite; }
+    .shape.rhomb { width: 46px; height: 66px; background: var(--logo-orange); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); top: 240px; right: 28%; animation: sh-c 14s ease-in-out infinite; }
+    .shape.tri { width: 0; height: 0; border-left: 32px solid transparent; border-right: 32px solid transparent; border-bottom: 56px solid var(--logo-lime); top: 320px; right: 14%; animation: sh-sp 16s ease-in-out infinite; }
+    @keyframes sh-a { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-13px,11px)} 66%{transform:translate(9px,-8px)} }
+    @keyframes sh-b { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+    @keyframes sh-c { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-15px,-9px)} }
+    @keyframes sh-sp { 0%,100%{transform:translate(0,0) rotate(0)} 50%{transform:translate(-11px,11px) rotate(180deg)} }
+    @media (max-width: 680px) { .shape.sq, .shape.circ, .shape.rhomb, .shape.tri { display: none; } }
 
     /* ---------- BUTTONS ---------- */
     .btn {
@@ -339,9 +349,10 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="shape square"></div>
-      <div class="shape circle"></div>
-      <div class="shape ring"></div>
+      <div class="shape circ"></div>
+      <div class="shape sq"></div>
+      <div class="shape rhomb"></div>
+      <div class="shape tri"></div>
 
       <p class="hero-role label">Senior Product Designer · UX/UI · AI</p>
       <h1>
