@@ -336,7 +336,7 @@
   <!-- ============ NAV ============ -->
   <header>
     <nav>
-      <a href="#" class="logo" aria-label="Evgeni Melnikov — home"><img src="logo.svg" alt="Evgeni Melnikov" /></a>
+      <a href="/" class="logo" id="logoHome" aria-label="Evgeni Melnikov — home"><img src="logo.svg" alt="Evgeni Melnikov" /></a>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#work">Work</a>
@@ -617,6 +617,16 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Лого → плавно наверх, без дописывания "#" в адрес
+    (function () {
+      const logo = document.getElementById("logoHome");
+      if (!logo) return;
+      logo.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); } });
     }, { threshold: 0.1 });
