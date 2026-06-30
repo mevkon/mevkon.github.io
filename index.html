@@ -542,14 +542,14 @@
             <figure class="poster"><img src="images/posters/poster-7.jpg" alt="Break the rules — typography poster" loading="lazy"></figure>
             <figure class="poster"><img src="images/posters/poster-8.jpg" alt="Aesthetic — fashion poster" loading="lazy"></figure>
             <figure class="poster"><img src="images/posters/poster-10.jpg" alt="Reisen Schweiz — travel poster" loading="lazy"></figure>
-            <figure class="poster"><img src="images/posters/poster-1.jpg" alt="Summer — typography poster" loading="lazy"></figure>
-            <figure class="poster"><img src="images/posters/poster-2.jpg" alt="Falafel &amp; Hummus — menu design" loading="lazy"></figure>
-            <figure class="poster"><img src="images/posters/poster-3.jpg" alt="Me — typography poster" loading="lazy"></figure>
-            <figure class="poster"><img src="images/posters/poster-4.jpg" alt="Poster Design — sunset typography" loading="lazy"></figure>
             <figure class="poster"><img src="images/posters/poster-5.jpg" alt="Less, but better — minimal poster" loading="lazy"></figure>
-            <figure class="poster"><img src="images/posters/poster-6.jpg" alt="VOXA — product brand poster" loading="lazy"></figure>
             <figure class="poster"><img src="images/posters/poster-9.jpg" alt="Building the future together — campaign poster" loading="lazy"></figure>
+            <figure class="poster"><img src="images/posters/poster-1.jpg" alt="Summer — typography poster" loading="lazy"></figure>
             <figure class="poster"><img src="images/posters/poster-12.jpg" alt="Together for a better future — social poster" loading="lazy"></figure>
+            <figure class="poster"><img src="images/posters/poster-3.jpg" alt="Me — typography poster" loading="lazy"></figure>
+            <figure class="poster"><img src="images/posters/poster-6.jpg" alt="VOXA — product brand poster" loading="lazy"></figure>
+            <figure class="poster"><img src="images/posters/poster-4.jpg" alt="Poster Design — sunset typography" loading="lazy"></figure>
+            <figure class="poster"><img src="images/posters/poster-2.jpg" alt="Falafel &amp; Hummus — menu design" loading="lazy"></figure>
           </div>
         </div>
         <button class="fb-nav pcar-next" id="pcarNext" aria-label="Next posters">&#8250;</button>
@@ -666,7 +666,7 @@
     lb.addEventListener("click", closeLightbox);
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
 
-    // Карусель постеров — постраничная лента
+    // Карусель постеров — листается по 1 постеру
     (function () {
       const vp = document.getElementById("pcarVp");
       const track = document.getElementById("pcarTrack");
@@ -675,55 +675,55 @@
       const prev = document.getElementById("pcarPrev");
       const next = document.getElementById("pcarNext");
       const dotsWrap = document.getElementById("pcarDots");
-      let page = 0, perView = 4, pages = 1, gap = 18;
+      let index = 0, perView = 4, maxIndex = 0, gap = 18;
 
+      function step() {
+        const slideW = slides[0].getBoundingClientRect().width;
+        return slideW + gap; // ширина одного постера + промежуток
+      }
       function measure() {
         const slideW = slides[0].getBoundingClientRect().width;
         const vpW = vp.getBoundingClientRect().width;
         gap = parseFloat(getComputedStyle(track).gap) || 18;
         perView = Math.max(1, Math.round((vpW + gap) / (slideW + gap)));
-        pages = Math.max(1, Math.ceil(slides.length / perView));
-        if (page > pages - 1) page = pages - 1;
-      }
-      function pageWidth() {
-        const slideW = slides[0].getBoundingClientRect().width;
-        return perView * (slideW + gap);
+        // последний индекс — чтобы правый край последнего постера совпал с краем окна
+        maxIndex = Math.max(0, slides.length - perView);
+        if (index > maxIndex) index = maxIndex;
       }
       function maxShift() {
-        // не уехать за последний постер
         return Math.max(0, track.scrollWidth - vp.getBoundingClientRect().width);
       }
       function apply(anim = true) {
         if (!anim) track.classList.add("no-anim");
-        let shift = Math.min(page * pageWidth(), maxShift());
+        const shift = Math.min(index * step(), maxShift());
         track.style.transform = `translateX(${-shift}px)`;
         if (!anim) requestAnimationFrame(() => track.classList.remove("no-anim"));
-        if (prev) prev.disabled = page <= 0;
-        if (next) next.disabled = page >= pages - 1;
-        Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle("active", i === page));
+        if (prev) prev.disabled = index <= 0;
+        if (next) next.disabled = index >= maxIndex;
+        Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle("active", i === index));
       }
       function buildDots() {
         dotsWrap.innerHTML = "";
-        for (let i = 0; i < pages; i++) {
+        // точка на каждую стоп-позицию (0..maxIndex)
+        for (let i = 0; i <= maxIndex; i++) {
           const b = document.createElement("button");
-          b.className = "fb-dot" + (i === page ? " active" : "");
-          b.setAttribute("aria-label", "Go to poster page " + (i + 1));
-          b.addEventListener("click", () => { page = i; apply(); });
+          b.className = "fb-dot" + (i === index ? " active" : "");
+          b.setAttribute("aria-label", "Go to poster " + (i + 1));
+          b.addEventListener("click", () => { index = i; apply(); });
           dotsWrap.appendChild(b);
         }
       }
-      function go(d) { page = Math.min(pages - 1, Math.max(0, page + d)); apply(); }
+      function go(d) { index = Math.min(maxIndex, Math.max(0, index + d)); apply(); }
       if (prev) prev.addEventListener("click", () => go(-1));
       if (next) next.addEventListener("click", () => go(1));
 
-      // свайп
+      // свайп — один постер за жест
       let x0 = null, dx = 0, dragging = false;
       vp.addEventListener("pointerdown", (e) => { x0 = e.clientX; dx = 0; dragging = true; window.__posterDragged = false; });
       vp.addEventListener("pointermove", (e) => { if (!dragging) return; dx = e.clientX - x0; if (Math.abs(dx) > 6) window.__posterDragged = true; });
       function endDrag() {
         if (!dragging) return; dragging = false;
         if (dx < -40) go(1); else if (dx > 40) go(-1);
-        // сбросить флаг чуть позже, чтобы click после свайпа успел его прочитать
         setTimeout(() => { window.__posterDragged = false; }, 30);
       }
       vp.addEventListener("pointerup", endDrag);
@@ -732,7 +732,6 @@
 
       function rebuild() { measure(); buildDots(); apply(false); }
       window.addEventListener("resize", () => { clearTimeout(window.__pcarT); window.__pcarT = setTimeout(rebuild, 150); });
-      // дождаться загрузки первой картинки для верного замера
       const firstImg = slides[0].querySelector("img");
       if (firstImg && !firstImg.complete) firstImg.addEventListener("load", rebuild, { once: true });
       rebuild();
