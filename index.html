@@ -171,6 +171,20 @@
     }
     .btn-primary { background: var(--cyan); color: #04161a; }
     .btn-primary:hover { transform: translateY(-2px); background: var(--lime); color: #14180a; }
+
+    /* Кнопка возврата наверх — появляется при скролле */
+    .to-top {
+      position: fixed; right: 28px; bottom: 28px; z-index: 90;
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--line-2); background: var(--surface);
+      color: var(--text); font-size: 22px; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+    .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .to-top:hover { background: var(--cyan); color: #04161a; border-color: var(--cyan); }
+    @media (max-width: 560px) { .to-top { right: 18px; bottom: 18px; width: 44px; height: 44px; font-size: 20px; } }
     .btn-ghost { border: 1px solid var(--line-2); color: var(--text); }
     .btn-ghost:hover { transform: translateY(-2px); border-color: var(--cyan); color: var(--cyan); }
 
@@ -335,11 +349,11 @@
     <nav>
       <a href="/" class="logo" id="logoHome" aria-label="Evgeni Melnikov — home"><img src="logo.svg" alt="Evgeni Melnikov" /></a>
       <div class="nav-links">
-        <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#branding">Branding</a>
         <a href="#posters">Posters</a>
         <a href="#book">Book</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
@@ -361,68 +375,8 @@
         <span class="line outline">Melnikov</span>
       </h1>
       <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">View work →</a>
+        <a href="#about" class="btn btn-primary">About me ↓</a>
         <a href="mailto:evgmel12@gmail.com" class="btn btn-ghost">Get in touch</a>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section id="about" class="reveal">
-      <div class="sec-head"><span class="sec-bar b-cyan"></span><span class="label">Introduction</span></div>
-      <div class="as-grid">
-        <div class="as-bio">
-          <h2 class="sec-title">About me</h2>
-        <p>
-          A full-spectrum designer working end-to-end — from early research and
-          wireframing to polished product UI, and from brand identity to editorial
-          and typographic posters. I turn complex products into interfaces that feel
-          simple and human, and ideas into visuals that get noticed.
-        </p>
-        <p>
-          I work best alongside engineers — a technical mindset lets me speak their
-          language, so design decisions hold up in real products instead of staying in
-          Figma. I lean on AI tools to move faster, and bring a strong background in
-          visual storytelling and branding to everything I build.
-        </p>
-        <p>
-          I've always wanted to understand how things work — from spacecraft and the
-          scale of the universe to the systems behind a good interface. That curiosity,
-          paired with a love for new technology, is what made me a designer. It still
-          drives me: taking something complicated and making it feel effortless.
-        </p>
-        </div>
-        <div class="as-skills">
-          <h2 class="sec-title">Skills</h2>
-          <p class="group-title label">Design</p>
-          <div class="chips g-design">
-            <span class="chip">UX/UI Design</span>
-            <span class="chip">Product Design</span>
-            <span class="chip">Design Systems</span>
-            <span class="chip">Branding &amp; Identity</span>
-            <span class="chip">Typography</span>
-            <span class="chip">Poster Design</span>
-            <span class="chip">User Research</span>
-            <span class="chip">AI-Assisted Design</span>
-            <span class="chip">Wireframing</span>
-            <span class="chip">Prototyping</span>
-          </div>
-          <p class="group-title label">Tools</p>
-          <div class="chips g-tools">
-            <span class="chip">Figma</span>
-            <span class="chip">Photoshop</span>
-            <span class="chip">Illustrator</span>
-            <span class="chip">InDesign</span>
-            <span class="chip">Canva</span>
-          </div>
-          <p class="group-title label">AI tools</p>
-          <div class="chips g-ai">
-            <span class="chip">Claude</span>
-            <span class="chip">Gemini (Nano Banana)</span>
-            <span class="chip">ChatGPT (DALL·E)</span>
-            <span class="chip">Adobe Firefly</span>
-            <span class="chip">Midjourney</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -581,6 +535,66 @@
       </div>
     </section>
 
+<!-- ============ ABOUT ============ -->
+    <section id="about" class="reveal">
+      <div class="sec-head"><span class="sec-bar b-cyan"></span><span class="label">Introduction</span></div>
+      <div class="as-grid">
+        <div class="as-bio">
+          <h2 class="sec-title">About me</h2>
+        <p>
+          A full-spectrum designer working end-to-end — from early research and
+          wireframing to polished product UI, and from brand identity to editorial
+          and typographic posters. I turn complex products into interfaces that feel
+          simple and human, and ideas into visuals that get noticed.
+        </p>
+        <p>
+          I work best alongside engineers — a technical mindset lets me speak their
+          language, so design decisions hold up in real products instead of staying in
+          Figma. I lean on AI tools to move faster, and bring a strong background in
+          visual storytelling and branding to everything I build.
+        </p>
+        <p>
+          I've always wanted to understand how things work — from spacecraft and the
+          scale of the universe to the systems behind a good interface. That curiosity,
+          paired with a love for new technology, is what made me a designer. It still
+          drives me: taking something complicated and making it feel effortless.
+        </p>
+        </div>
+        <div class="as-skills">
+          <h2 class="sec-title">Skills</h2>
+          <p class="group-title label">Design</p>
+          <div class="chips g-design">
+            <span class="chip">UX/UI Design</span>
+            <span class="chip">Product Design</span>
+            <span class="chip">Design Systems</span>
+            <span class="chip">Branding &amp; Identity</span>
+            <span class="chip">Typography</span>
+            <span class="chip">Poster Design</span>
+            <span class="chip">User Research</span>
+            <span class="chip">AI-Assisted Design</span>
+            <span class="chip">Wireframing</span>
+            <span class="chip">Prototyping</span>
+          </div>
+          <p class="group-title label">Tools</p>
+          <div class="chips g-tools">
+            <span class="chip">Figma</span>
+            <span class="chip">Photoshop</span>
+            <span class="chip">Illustrator</span>
+            <span class="chip">InDesign</span>
+            <span class="chip">Canva</span>
+          </div>
+          <p class="group-title label">AI tools</p>
+          <div class="chips g-ai">
+            <span class="chip">Claude</span>
+            <span class="chip">Gemini (Nano Banana)</span>
+            <span class="chip">ChatGPT (DALL·E)</span>
+            <span class="chip">Adobe Firefly</span>
+            <span class="chip">Midjourney</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ============ CONTACT ============ -->
@@ -610,6 +624,8 @@
       <span class="label">© <span id="year"></span> Evgeni Melnikov</span>
     </div>
   </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">&#8593;</button>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -808,6 +824,20 @@
       vp.addEventListener("pointerleave", () => { if (dragging) up(); });
 
       render();
+    })();
+
+    // Кнопка возврата наверх — показывается после прокрутки
+    (function () {
+      const btn = document.getElementById("toTop");
+      if (!btn) return;
+      const SHOW_AFTER = 600;
+      function onScroll() {
+        if (window.scrollY > SHOW_AFTER) btn.classList.add("show");
+        else btn.classList.remove("show");
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+      onScroll();
     })();
   </script>
 </body>
